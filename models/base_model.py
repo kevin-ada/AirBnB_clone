@@ -1,44 +1,56 @@
 #!/usr/bin/python3
-"""Defines the Base class model."""
+"""[Docstring for the Basemodel]"""
+import uuid
 from datetime import datetime
 import models
-from uuid import uuid4
 
 
 class BaseModel:
-    """Represents the BaseModel of the AirBnB project."""
+    """[BaseModel class - May act as our Schema]
+    """
 
-    def __init__(self, *args, **kwargs):
-        """Initialize a new BaseModel.
+    def __init__(self, *args, **kwargs) -> None:
+        """[Constructor that initializes a new instance of BaseModel]
         """
-        tform = "%Y-%m-%dT%H:%M:%S.%f"
-        self.id = str(uuid4())
+        self.id = str(uuid.uuid4())
         self.created_at = datetime.today()
-        self.updated_at = datetime.now()
-        if kwargs is not None:
-            for k, v in kwargs.items():
-                if k == "created_at" or k == "updated_at":
-                    self.__dict__[k] = datetime.strptime(v, tform)
+        self.updated_at = datetime.today()
+        if kwargs:
+            for key, value in kwargs.items():
+                if key == "__class__":
+                    pass
+                elif key != "created_at" and key != "updated_at":
+                    self.__dict__[key] = value
                 else:
-                    self.__dict__[k] = v
+                    self.__dict__[key] = datetime.strptime(
+                        value, "%Y-%m-%dT%H:%M:%S.%f")
         else:
             models.storage.new(self)
 
-        def __str__(self):
-            """print a base model"""
-            return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
+    def __str__(self) -> str:
+        """[Changing the str method expected output to :
+        [<class name>] (<self.id>) <self.__dict__>]
 
-        def save(self):
-            """Update updated_at with the current time."""
-            self.updated_at = datetime.today()
-            models.storage.save()
+        Returns:
+            str: [description with the information changed]
+        """
+        return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
 
-        def to_dict(self):
-            """Return the dictionary representation
-            of the BaseModel instance.
-            """
-            rdict = self.__dict__.copy()
-            rdict["created_at"] = self.created_at.isoformat()
-            rdict["updated_at"] = self.updated_at.isoformat()
-            rdict["__class__"] = self.__class__.__name__
-            return rdict
+    def save(self):
+        """[Function that updates the update_date]
+        """
+        self.updated_at = datetime.today()
+        models.storage.save()
+
+    def to_dict(self):
+        """[Function that returns  specific information about the class
+        in a dict]
+
+        Returns:
+            [dict]: [The attributes with the format required]
+        """
+        copy = self.__dict__.copy()
+        copy["__class__"] = self.__class__.__name__
+        copy["created_at"] = self.created_at.isoformat()
+        copy["updated_at"] = self.updated_at.isoformat()
+        return copy
