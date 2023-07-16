@@ -1,6 +1,13 @@
 #!/usr/bin/python3
 """Module that contains the FileStorage class"""
 import json
+from models.base_model import BaseModel
+from models.user import User
+from models.state import State
+from models.city import City
+from models.place import Place
+from models.amenity import Amenity
+from models.review import Review
 
 
 class FileStorage:
@@ -27,12 +34,12 @@ class FileStorage:
             json.dump(transformed, f)
 
     def reload(self):
-        """deserializes the JSON file to __objects if this exists"""
+        """deserializes the JSON file to __objects if it exists"""
         try:
             with open(self.__file_path, mode="r") as f:
                 readed = json.load(f)
             for _, dict_readed in readed.items():
-                class_name = dict_readed.__getitem__('__class__')
+                class_name = dict_readed['__class__']
                 self.new(eval(class_name)(**dict_readed))
         except FileNotFoundError:
-            return
+            return {}
