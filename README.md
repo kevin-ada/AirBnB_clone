@@ -1,6 +1,8 @@
-AirBnB clone - The console
-This is series part one of building out an Airbnb clone.
-Starting out with the console.
+# AirBnB clone - The console
+## This is series part one of building out an Airbnb clone.
+> Starting out with the console.
+
+
 Requirements:
 1.First step: Write a command interpreter to manage
 your AirBnB objects.
