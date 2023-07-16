@@ -2,12 +2,15 @@
 ## This is series part one of building out an Airbnb clone.
 > Starting out with the console.
 
-![AirBnb Clone](images\65f4a1dd9c51265f49d0.png)
+![65f4a1dd9c51265f49d0](https://github.com/kevin-ada/AirBnB_clone/assets/136765569/17b21864-1e7c-4cf6-b0cf-1b35a3159a3c)
+
+
 
 
 ## Overview Of The Project
+![815046647d23428a14ca](https://github.com/kevin-ada/AirBnB_clone/assets/136765569/a3f9828c-b25d-44d3-9858-f1da95785d64)
 
-![Overview](images\815046647d23428a14ca.png)
+
 
 
 Requirements:
