@@ -1,12 +1,12 @@
 #!/usr/bin/python3
-"""[Docstring for the Basemodel]"""
+"""Docstring for the Basemodel"""
 import uuid
 from datetime import datetime
 import models
 
 
 class BaseModel:
-    """[BaseModel class - May act as our Schema]
+    """BaseModel class - May act as our Schema
     """
 
     def __init__(self, *args, **kwargs) -> None:
